@@ -1,0 +1,172 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <link rel="import" href="vendors/css/links.html">
+    <title>Destinations</title>
+</head>
+
+<body>
+    <header>
+        <nav>
+            <div class="rowMe">
+                <ul class="main-navMe">
+                    <li><a id="btns" href="#">Start Here</a></li>
+
+                    <li><a id="btns" href="#">Contact</a></li>
+                    <li>
+                        <div id="loginBtn" data-toggle="modal" data-target="#modalLRForm">
+                            <span class="border border-info rounded w-25 p-3 text-info hoverButtonSign">
+                                <span id="colorWordsHover"><a href="users/login" id="loginBtn">Sign Up</a></span>
+                            </span>
+                        </div>
+                    </li>
+                </ul>
+            </div>
+        </nav>
+        <div class="hero-text-box">
+            <h1>Better to <span style="color:greenyellow">see </span> something once <br><span id="bottomText">than hear about it a thousand times</span></h1>
+        </div>
+    </header>
+
+    <section class="my-5 firstPara">
+        <h2 class="h1-responsive font-weight-bold text-center my-5">About us!</h2>
+        <p class="grey-text text-center w-responsive mx-auto mb-5">We are an immigration company ready to make your dream come true</p>
+
+        <div class="row imgLanding" >
+            <div class="col-lg-5 mb-lg-0 mb-5" >
+                <img src="resources/img/travel.jpg"  style="height: 405px;"  alt="Sample project image" class="img-fluid rounded z-depth-1">
+            </div>
+
+            <div class="col-lg-7">
+
+                <div class="row mb-3">
+                    <div class="col-md-1 col-2">
+                    </div>
+
+                    <div class="col-md-11 col-10">
+                        
+                        <h5 class="font-weight-bold mb-3"><i class="fas fa-graduation-cap" style="color: #17a2b8; margin-right: 15px;"></i><span style="border-bottom: 2px solid #17a2b8;">Education</span></h5>
+                        <p class="grey-text">Lorem ipsum dolor sit amet, consectetur adipisicing. Reprehenderit maiores
+                            nam,
+                            aperiam minima elit assumenda voluptate velit.</p>
+                    </div>
+                </div>
+
+                <div class="row mb-3">
+                    <div class="col-md-1 col-2">
+                    </div>
+
+                    <div class="col-md-11 col-10">
+                        <h5 class="font-weight-bold mb-3"><i class="fas fa-luggage-cart" style="color: #17a2b8; margin-right: 15px;"></i> <span style="border-bottom: 2px solid #17a2b8;">Work Abroad</span></h5>
+                        <p class="grey-text">Lorem ipsum dolor sit amet, consectetur adipisicing. Reprehenderit maiores
+                            nam,
+                            aperiam minima elit assumenda voluptate velit.</p>
+                    </div>
+                </div>
+
+                <div class="row">
+                    <div class="col-md-1 col-2">
+                    </div>
+
+                    <div class="col-md-11 col-10">
+                        <h5 class="font-weight-bold mb-3"><i class="fas fa-passport" style="color: #17a2b8; margin-right: 15px;"></i> <span style="border-bottom: 2px solid #17a2b8;">Immigration</span></h5>
+                        <p class="grey-text mb-0">Lorem ipsum dolor sit amet, consectetur adipisicing. Reprehenderit
+                            maiores
+                            nam, aperiam minima elit assumenda voluptate velit.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    <br>
+    <br>
+    <br>
+    <h2 class="h1-responsive font-weight-bold text-center my-5">Not sure where to go?</h2>
+    
+    <canvas id="myChartOn"></canvas>
+    
+    <br>
+    <br>
+    <br>
+
+    <h2 class="h1-responsive font-weight-bold text-center my-5">Contact us!</h2>
+    <div class="container1">
+        <form action="/contact" method="POST">
+            <label for="name">First Name</label>
+            <input type="text" id="name" name="name" placeholder="Your name..">
+
+            <label for="email">Last Name</label>
+            <input type="text" id="email" name="email" placeholder="Your last name..">
+
+            <label for="desc">Subject</label>
+            <textarea type="text" id="subject" name="subject" placeholder="Write something.." style="height:200px"></textarea>
+
+            <input type="submit" class="btn btn-primary" value="Submit">
+        </form>
+    </div>
+    <br><br><br><br>
+    <footer class="page-footer font-small special-color-dark pt-4">
+        <div class="container">
+            <ul class="list-unstyled list-inline text-center">
+                <li class="list-inline-item">
+                    <a class="btn-floating btn-fb mx-1">
+                        <i class="fab fa-facebook-f"> </i>
+                    </a>
+                </li>
+                <li class="list-inline-item">
+                    <a class="btn-floating btn-tw mx-1">
+                        <i class="fab fa-twitter"> </i>
+                    </a>
+                </li>
+                <li class="list-inline-item">
+                    <a class="btn-floating btn-gplus mx-1">
+                        <i class="fab fa-google-plus-g"> </i>
+                    </a>
+                </li>
+                <li class="list-inline-item">
+                    <a class="btn-floating btn-li mx-1">
+                        <i class="fab fa-linkedin-in"> </i>
+                    </a>
+                </li>
+                <li class="list-inline-item">
+                    <a class="btn-floating btn-dribbble mx-1">
+                        <i class="fab fa-dribbble"> </i>
+                    </a>
+                </li>
+            </ul>
+        </div>
+        <div class="footer-copyright text-center py-3">© 2019 Copyright:
+            <a href="#"> Gabriel Henrique</a>
+        </div>
+    </footer>
+    <section class="containerChat">
+        <button class="open-button" onclick="openForm()">
+            Chat</button>
+
+        <div class="chat-popup" id="myform">
+            
+            <form action="/chat" method="POST" id="chat" class="form-container">
+                <div id="banner">
+                    <img id="atendente" src="/resources/img/at.png">
+                    <p id="help">How can I help you today?</p><br>
+                    <div id="date"></div>
+                </div>
+                <div class="messageWrap">
+                    <div style="font-size: 12px; font-style: italic;">Thank you for contacting us, please ask your question below.</div>
+                    <div class="messages"></div>
+                </div>
+                <input id="username" type="text" name="username" placeholder="Your username">
+                <input id="textarea" type="text" name="message" placeholder="Your Message">
+            <div id="buttonTemplate">
+                <button type="submit" class="btn1">Send</button>
+                <button type="button" class="btn1 cancel bt3" onclick="closeForm()">Close</button>
+            </div>
+            </form>
+        </div>
+    </section>
+    
+</body>
+
+
+</html>
