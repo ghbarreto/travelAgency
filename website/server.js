@@ -34,7 +34,7 @@ mongoose.connect(db, { useNewUrlParser: true})
 app.use(expressLayouts);
 app.set('view engine', 'ejs');
 app.engine('html', require('ejs').renderFile);
-
+app.set('views', __dirname + 'views');
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(bodyParser.json());
 app.use(express.static(__dirname));
