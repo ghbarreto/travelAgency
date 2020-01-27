@@ -261,11 +261,19 @@ app.post('/deleteAccount',(req,res) => {
 	})
 });
 
-app.post('/:code', (req, res) =>{
-    console.log(req.params.code + " , " + req.body.lname + ", " + req.body.fname);
-     if (req.params.code == 1)
- 	    nmongo.getData(req, res);
-	else if (req.params.code == 2)
-		nmongo.getMovies(req, res);
+app.post('/getPlaces', (req, res) => {
+ 	nmongo.getData(req, res);
+})
+
+app.post('/retrievePlaces', (req, res) => {
+	nmongo.getMovies(req, res);
+})
+
+// app.post('/:code', (req, res) =>{
+//     console.log(req.params.code + " , " + req.body.lname + ", " + req.body.fname);
+//      if (req.params.code == 1)
+//  	    nmongo.getData(req, res);
+// 	else if (req.params.code == 2)
+// 		nmongo.getMovies(req, res);
 	
-});
+// });
