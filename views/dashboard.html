@@ -17,7 +17,7 @@
 
 
       $scope.getData = function () {
-        $http.post("http://" + document.domain + ":8000/getPlaces")
+        $http.post("http://" + document.domain + "/getPlaces")
           .then(function (response) {
             $scope.names = response.data;
           });
@@ -32,7 +32,7 @@
 
         var reqData = {
           method: 'POST',
-          url: "http://" + document.domain + ":8000/retrievePlaces",
+          url: "http://" + document.domain + "/retrievePlaces",
           data: { dbox: JSON.stringify(p) }
         }
         $http(reqData)
