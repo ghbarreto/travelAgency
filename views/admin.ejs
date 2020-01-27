@@ -45,7 +45,7 @@
       let p = [];
       var reqData = {
         method: 'POST',
-        url: "http://" + document.domain + ":8000/retrieveContacts",
+        url: "http://" + document.domain + "/retrieveContacts",
         data: { dbox: JSON.stringify(p) }
       }
       $http(reqData)
@@ -58,7 +58,7 @@
         let p = [];
         var reqData = {
           method: 'POST',
-          url: "http://" + document.domain + ":8000/getOrders",
+          url: "http://" + document.domain + "/getOrders",
           data: { dbox: JSON.stringify(p) }
         }
         $http(reqData)
@@ -70,7 +70,7 @@
         let p = [];
         var reqData = {
           method: 'POST',
-          url: "http://" + document.domain + ":8000/getAccounts",
+          url: "http://" + document.domain + "/getAccounts",
           data: { dbox: JSON.stringify(p) }
         }
         $http(reqData)
