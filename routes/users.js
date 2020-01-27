@@ -13,7 +13,7 @@ router.get('/login', (req,res) => res.render('login.ejs'));
 // ======================================
 
 // Register route
-router.get('/register', (req,res) => res.render('Register'));
+router.get('/register', (req,res) => res.render('register.ejs'));
 
 router.post('/register', (req, res) => {
     const { name, email, password, password2 } = req.body;
