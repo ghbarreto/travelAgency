@@ -1,0 +1,244 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <title>Dashboard</title>
+  
+
+  <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.9/angular.min.js"></script>
+  <script src="https://code.jquery.com/jquery-3.4.1.js" integrity="sha256-WpOohJOqMqqyKL9FccASB9O0KwACQJpFTUBLTYOVvVU="
+    crossorigin="anonymous"></script>
+  <script src="//ajax.googleapis.com/ajax/libs/jquery/1.11.0/jquery.js"></script>
+  <link rel="stylesheet" type="text/css" href="../resources/css/adminPanel.css">
+  <script>
+    var app = angular.module("myApp", []);
+
+    app.controller("myCtrl", function ($scope, $http) {
+
+
+    $scope.getData = function () {
+      $http.post("http://" + document.domain + ":8000/1")
+        .then(function (response) {
+          $scope.names = response.data;
+        });
+    }
+    $scope.getMovies = function () {
+
+      let cb = $("input[name='proj']:checked");
+      let p = [];
+      $.each(cb, function (key, theValue) {
+        p.push($(theValue).val());
+      });
+
+      var reqData = {
+        method: 'POST',
+        url: "http://" + document.domain + ":8000/2",
+        data: { dbox: JSON.stringify(p) }
+      }
+      $http(reqData)
+        .then(function (response) {
+          $scope.store = response.data;
+        });
+    }
+
+    $scope.getContacts = function () {
+      let p = [];
+      var reqData = {
+        method: 'POST',
+        url: "http://" + document.domain + ":8000/retrieveContacts",
+        data: { dbox: JSON.stringify(p) }
+      }
+      $http(reqData)
+        .then(function (response) {
+          $scope.contacts = response.data;
+        });
+    }
+ 
+    $scope.getOrders = function () {
+        let p = [];
+        var reqData = {
+          method: 'POST',
+          url: "http://" + document.domain + ":8000/getOrders",
+          data: { dbox: JSON.stringify(p) }
+        }
+        $http(reqData)
+          .then(function (response) {
+            $scope.orders = response.data;
+          });
+      }
+    $scope.getAccounts = function () {
+        let p = [];
+        var reqData = {
+          method: 'POST',
+          url: "http://" + document.domain + ":8000/getAccounts",
+          data: { dbox: JSON.stringify(p) }
+        }
+        $http(reqData)
+          .then(function (response) {
+            $scope.accounts = response.data;
+          });
+      }
+    });
+
+  </script>
+</head>
+<body>
+<h2>ADMIN Dashboard</h2>
+<a href="/users/logout" class="btn">Logout</a>
+<br><br>
+<div ng-app="myApp" ng-controller="myCtrl">
+    <button ng-init="getData()" style="display: none;"></button>
+    <table>
+      <tr ng-repeat="x in names track by $index">
+        <td><input type="checkbox" name="proj" value={{x}}> {{x}}</td>
+      </tr>
+    </table>
+
+    <button ng-click="getMovies()">Get Locations</button><br>
+    <br>
+    
+  <table class="loc-wrap" id="store">
+    <tbody class="loc-container">
+      <!-- <th>Location</th><th>Price</th><th>Image</th><th>Quote</th><th>Object ID</th> -->
+      <tr class="loc-name" ng-repeat="x in store">
+          <td id="location">{{x.location}}</td>
+          <td id="price">{{x.price}}</td>
+          <td><img src="{{x.img}}" alt=""> </td>
+          <td>{{x._id}}</td>
+      </tr>
+    </tbody>
+  </table>
+    
+    
+  <h2>Last Contacts</h2>
+  <button style="display:none;" ng-init="getContacts()"></button>
+  <table>
+    <th>Name</th><th>Email</th><th>Subject</th><th>Message ID</th>
+    <tr ng-repeat="z in contacts">
+      <td>{{z.name}}</td><br>
+      <td>{{z.email}}</td><br>
+      <td>{{z.subject}}</td><br>
+      <td>{{z._id}}</td>
+    </tr>
+  </table>
+  <hr>
+  <h2>Last Orders</h2>
+    <br>
+  <button style="display:none;" ng-init="getOrders()">Orders</button>
+  <table>
+    <th>Location</th><th>Email</th><th>Price</th><th>ID</th>
+    <tr ng-repeat="z in orders">
+      <td>{{z.location}}</td><br>
+      <td>{{z.email}}</td><br>
+      <td>{{z.price}}</td><br>
+      <td>{{z._id}}</td>
+    </tr>
+  </table>
+  <br><br>
+  <h2>Account information</h2>
+  <button style="display:none;" ng-init="getAccounts()">Accounts</button>
+  <table>
+    <th>isAdmin</th><th>Name</th><th>Email</th><th>Date Created</th><th>ID</th>
+    <tr ng-repeat="z in accounts">
+      <td>{{z.isAdmin}}</td><br>
+      <td>{{z.name}}</td><br>
+      <td>{{z.email}}</td><br>
+      <td>{{z.date.substr(0,10)}}</td><br>
+      <td>{{z._id}}</td>
+
+    </tr>
+  </table>
+</div>
+<hr>
+<br>
+
+<h2>Add Admin</h2>
+<form action="/addAdmin" method="POST">
+    <select name="choice">
+      <option value="true">true</option>
+      <option value="false">false</option>
+    </select>
+    <label for="ID">ID</label>
+    <input type="text" id="idAdm" name="idAdm" placeholder="ID" >
+    <input type="submit" value="Submit">
+</form>
+<hr>
+
+<h2>Purge Contact Message</h2>
+<form action="/deleteContact" method="POST">
+  <label for="id">Id</label>
+  <input type="text" id="id" name="id" placeholder="id">
+  <input type="submit" value="Submit">
+</form>
+<br>
+<hr>
+<br>
+<h2>ADD Locations</h2>
+  <form action="addDestination" method="POST">
+      <label for="location">Location</label> 
+      <input type="text" id="location" name="location" placeholder="Location"><br>
+      
+      <label for="img">Image</label>
+      <input type="text" id="img" name="img" value="/resources/img/"><br>
+  
+      <label for="price">price</label>
+      <input id="price" name="price" placeholder="price"><br><br>
+  
+      <input type="submit" value="Submit">
+  </form>
+<hr>
+<br>
+<br>
+<h2>Update Locations</h2>
+<form action="/updateDestination" method="POST">
+    <label for="id">Id</label>
+    <input type="text" id="id" name="id" placeholder="id">
+
+    <label for="location">Location</label>
+    <input type="text" id="location" name="location" placeholder="Location" >
+
+    <label for="img">Image</label>
+    <input type="text" id="img" name="img" placeholder="Image" value="/resources/img/">
+
+    <label for="price">price</label>
+    <input id="price" name="price" placeholder="price">
+
+    <input type="submit" value="Submit">
+</form>
+<hr>
+
+<br>
+<h2>Purge Location</h2>
+<form action="/deleteDestination" method="POST">
+  <label for="id">Id</label>
+  <input type="text" id="id" name="id" placeholder="id">
+
+  <input type="submit" value="Submit">
+</form>
+<br>
+<hr>
+<br>
+<h2>Purge Order</h2>
+<form action="/deleteOrder" method="POST">
+  <label for="id">Id</label>
+  <input type="text" id="id" name="id" placeholder="id">
+
+  <input type="submit" value="Submit">
+</form>
+
+<hr>
+
+<br>
+<hr>
+<br>
+<h2>Purge Account</h2>
+<form action="/deleteAccount" method="POST">
+  <label for="id">Id</label>
+  <input type="text" id="id" name="id" placeholder="id">
+
+  <input type="submit" value="Submit">
+</form>
+
+
+</body>
+</html>
